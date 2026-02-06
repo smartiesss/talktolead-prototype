@@ -19,16 +19,16 @@
     }
   </script>
   <style>
-    .screen { display: none !important; }
-    .screen.active { display: flex !important; }
-    .screen.active#dashboard, .screen.active#contacts, .screen.active#recordings, .screen.active#device, .screen.active#recording-detail { display: block !important; }
+    [data-screen] { display: none; }
+    [data-screen].active { display: block; }
+    [data-screen="login"].active { display: flex; }
     .nav-item.active { background: #0ea5e9; color: white; }
   </style>
 </head>
 <body class="bg-gray-50 font-sans">
   
   <!-- Screen 1: Login -->
-  <div id="login" class="screen active min-h-screen flex items-center justify-center bg-gradient-to-br from-brand-600 to-brand-700">
+  <div id="login" data-screen="login" class="active" style="min-height: 100vh; align-items: center; justify-content: center; background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);">
     <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md mx-4">
       <div class="text-center mb-8">
         <div class="w-16 h-16 bg-brand-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
@@ -52,7 +52,7 @@
   </div>
 
   <!-- Screen 2: Dashboard -->
-  <div id="dashboard" class="screen min-h-screen bg-gray-50">
+  <div id="dashboard" data-screen="dashboard" class="min-h-screen bg-gray-50">
     <!-- Header -->
     <header class="bg-white border-b border-gray-200 px-6 py-4">
       <div class="max-w-7xl mx-auto flex items-center justify-between">
@@ -191,7 +191,7 @@
   </div>
 
   <!-- Screen 3: Contacts -->
-  <div id="contacts" class="screen min-h-screen bg-gray-50">
+  <div id="contacts" data-screen="contacts" class="min-h-screen bg-gray-50">
     <header class="bg-white border-b border-gray-200 px-6 py-4">
       <div class="max-w-7xl mx-auto flex items-center justify-between">
         <div class="flex items-center gap-3">
@@ -344,7 +344,7 @@
   </div>
 
   <!-- Screen 4: Recordings -->
-  <div id="recordings" class="screen min-h-screen bg-gray-50">
+  <div id="recordings" data-screen="recordings" class="min-h-screen bg-gray-50">
     <header class="bg-white border-b border-gray-200 px-6 py-4">
       <div class="max-w-7xl mx-auto flex items-center justify-between">
         <div class="flex items-center gap-3">
@@ -496,7 +496,7 @@
   </div>
 
   <!-- Screen 5: Recording Detail -->
-  <div id="recording-detail" class="screen min-h-screen bg-gray-50">
+  <div id="recording-detail" data-screen="recording-detail" class="min-h-screen bg-gray-50">
     <header class="bg-white border-b border-gray-200 px-6 py-4">
       <div class="max-w-7xl mx-auto flex items-center gap-4">
         <button onclick="showScreen('recordings')" class="p-2 hover:bg-gray-100 rounded-lg">
@@ -695,7 +695,7 @@
   </div>
 
   <!-- Screen 6: Device -->
-  <div id="device" class="screen min-h-screen bg-gray-50">
+  <div id="device" data-screen="device" class="min-h-screen bg-gray-50">
     <header class="bg-white border-b border-gray-200 px-6 py-4">
       <div class="max-w-7xl mx-auto flex items-center justify-between">
         <div class="flex items-center gap-3">
@@ -844,7 +844,7 @@
 
   <script>
     function showScreen(id) {
-      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('[data-screen]').forEach(s => s.classList.remove('active'));
       document.getElementById(id).classList.add('active');
     }
   </script>
